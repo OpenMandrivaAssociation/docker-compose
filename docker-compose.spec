@@ -1,17 +1,13 @@
 %global debug_package %{nil}
 
 Name:           docker-compose
-Version:        1.22.0
-Release:        2
+Version:	1.24.1
+Release:	1
 Summary:        Multi-container orchestration for Docker
 
 License:        ASL 2.0
 URL:            https://github.com/docker/compose
 Source0:        https://files.pythonhosted.org/packages/source/d/%{name}/%{name}-%{version}.tar.gz
-
-# Upstream uses environment markers to conditionally apply some dependencies.
-# Environment markers were first added in setuptools 20.6.8.
-Patch2:         allow-older-setuptools.patch
 
 # docker-compose is compatible with fig and is a simple rename.
 # Currently it only prints deprecation warnings for changed functionality.
@@ -78,7 +74,7 @@ install -D -p -m 644 contrib/completion/zsh/_docker-compose %{buildroot}%{_datad
 install -D -p -m 644 contrib/completion/fish/docker-compose.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/docker-compose.fish
 
 %files
-%doc CHANGELOG.md README.rst
+%doc CHANGELOG.md
 %license LICENSE
 %{_bindir}/%{name}
 %{python3_sitelib}/*
