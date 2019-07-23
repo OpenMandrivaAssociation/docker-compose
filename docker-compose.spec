@@ -18,7 +18,7 @@ Obsoletes:      fig <= 1.0.1-3
 BuildRequires:  python-devel
 BuildRequires:  python-setuptools
 
-Requires:       python-cached_property >= 1.3.0
+Requires:       python-cached-property >= 1.3.0
 Requires:       python-docker >= 3.4.1
 Requires:       python-docker-pycreds >= 0.3.0
 Requires:       python-dockerpty >= 0.4.1
