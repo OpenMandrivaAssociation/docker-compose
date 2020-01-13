@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           docker-compose
-Version:	1.25.0
-Release:	2
+Version:	1.25.1
+Release:	1
 Summary:        Multi-container orchestration for Docker
 
 License:        ASL 2.0
