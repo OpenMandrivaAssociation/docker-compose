@@ -2,7 +2,7 @@
 
 Name:           docker-compose
 Version:	1.25.5
-Release:	1
+Release:	2
 Summary:        Multi-container orchestration for Docker
 
 License:        ASL 2.0
@@ -32,6 +32,7 @@ Requires:       python-six >= 1.10.0
 Requires:       python-texttable >= 0.9.1
 Requires:       python-websocket-client >= 0.32.0
 Requires:       python-yaml >= 3.12
+Requires:	python-paramiko >= 2.7.1
 BuildArch:      noarch
 
 %description
