@@ -2,7 +2,7 @@
 
 Name:           docker-compose
 Version:	1.29.2
-Release:	2
+Release:	3
 Summary:        Multi-container orchestration for Docker
 
 License:        ASL 2.0
