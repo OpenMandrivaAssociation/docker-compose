@@ -1,13 +1,14 @@
 %global debug_package %{nil}
 
 Name:		docker-compose
-Version:	1.29.2
-Release:	4
+Version:	2.26.1
+Release:	1
 Summary:	Multi-container orchestration for Docker
 
 License:	ASL 2.0
 URL:		https://github.com/docker/compose
-Source0:	https://files.pythonhosted.org/packages/source/d/%{name}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/docker/compose/archive/v%{version}.tar.gz
+Source1:	vendor.tar.gz
 
 # docker-compose is compatible with fig and is a simple rename.
 # Currently it only prints deprecation warnings for changed functionality.
@@ -15,25 +16,9 @@ Provides:	fig = %{version}-%{release}
 # Last fig EVR was 1.0.1-2
 Obsoletes:	fig <= 1.0.1-3
 
-BuildRequires:	pkgconfig(python)
-BuildRequires:	python-setuptools
-
-Requires:	python-cached-property >= 1.3.0
-Requires:	python-docker >= 3.4.1
-Requires:	python-docker-pycreds >= 0.3.0
-Requires:	python-dockerpty >= 0.4.1
-Requires:	python-docopt >= 0.6.2
-Requires:	python-idna >= 2.5
-Requires:	python-jsonschema >= 2.6.0
-Requires:	python-pysocks >= 1.6.7-6
-Requires:	python-requests >= 2.18.4
-Requires:	python-setuptools
-Requires:	python-six >= 1.10.0
-Requires:	python-texttable >= 0.9.1
-Requires:	python-websocket-client >= 0.32.0
-Requires:	python-yaml >= 3.12
-Requires:	python-paramiko >= 2.7.1
-BuildArch:	noarch
+BuildRequires:  golang >= 1.21
+BuildRequires:  make
+Requires:       docker >= 24.0.1
 
 %description
 Compose is a tool for defining and running multi-container Docker
@@ -54,31 +39,23 @@ Using Compose is basically a three-step process.
    entire app.
 
 %prep
-%autosetup -p 1
-
-# Remove dependency version constraints not relevant in Fedora/EPEL
-sed -e 's/, < [0-9.]\+//' -i setup.py
-
-# https://github.com/docker/compose/issues/4884
-sed -e '/requests >= / s/2\.6\.1/2.6.0/' -i setup.py
-
-# Upstream uses an underscore here
-rm -r docker_compose.egg-info
+%autosetup -p 1 -n compose-%{version} -a 1
 
 %build
-%py_build
+export GO111MODULE=on
+# Thanks to OpenSUSE for sharing their build !
+go build \
+   -buildmode=pie \
+   -trimpath \
+   -ldflags="-linkmode=external -s -w -X github.com/docker/compose/v2/internal.Version=%{version}" \
+   -o bin/build/docker-compose ./cmd/
 
 %install
-%py_install
-install -D -p -m 644 contrib/completion/bash/docker-compose %{buildroot}%{_datadir}/bash-completion/completions/docker-compose
-install -D -p -m 644 contrib/completion/zsh/_docker-compose %{buildroot}%{_datadir}/zsh/site-functions/_docker-compose
-install -D -p -m 644 contrib/completion/fish/docker-compose.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/docker-compose.fish
+install -d -m 0755 %{buildroot}/%{_libexecdir}/docker/cli-plugins
+install -p -m 0755 bin/build/%{name} %{buildroot}/%{_libexecdir}/docker/cli-plugins/
+
 
 %files
-%doc CHANGELOG.md
+%doc BUILDING.md CONTRIBUTING.md README.md MAINTAINERS NOTICE
 %license LICENSE
-%{_bindir}/%{name}
-%{python_sitelib}/*
-%{_datadir}/bash-completion
-%{_datadir}/zsh
-%{_datadir}/fish
+%{_libexecdir}/docker/cli-plugins/%{name}

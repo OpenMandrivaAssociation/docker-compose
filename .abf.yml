@@ -1,2 +1,3 @@
 sources:
-  docker-compose-1.29.2.tar.gz: efdc2185f035e2fd60b2c46c42f0f9669dc2368a
+  v2.26.1.tar.gz: 3b715066c075a0831e6f7ecf27c863cd5aeea6a2
+  vendor.tar.gz: 5d96c8f4ac4dbdab49ef66b1f1082ccecd35d69b
