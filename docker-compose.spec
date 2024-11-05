@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:		docker-compose
-Version:	2.26.1
+Version:	2.30.2
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
