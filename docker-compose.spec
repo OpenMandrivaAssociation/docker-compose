@@ -1,14 +1,15 @@
-%global debug_package %{nil}
+%undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	2.30.2
+Version:	2.31.0
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
 License:	ASL 2.0
 URL:		https://github.com/docker/compose
 Source0:	https://github.com/docker/compose/archive/v%{version}.tar.gz
-Source1:	vendor.tar.gz
+# go mod vendor ; tar cJf vendor.tar.xz vendor
+Source1:	vendor.tar.xz
 
 # docker-compose is compatible with fig and is a simple rename.
 # Currently it only prints deprecation warnings for changed functionality.
