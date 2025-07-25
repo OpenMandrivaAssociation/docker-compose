@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	2.37.2
+Version:	2.39.1
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
