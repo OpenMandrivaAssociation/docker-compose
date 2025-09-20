@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	2.39.1
+Version:	2.39.4
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
@@ -57,6 +57,6 @@ install -p -m 0755 bin/build/%{name} %{buildroot}/%{_libexecdir}/docker/cli-plug
 
 
 %files
-%doc BUILDING.md CONTRIBUTING.md README.md MAINTAINERS NOTICE
+%doc BUILDING.md CONTRIBUTING.md README.md NOTICE
 %license LICENSE
 %{_libexecdir}/docker/cli-plugins/%{name}
