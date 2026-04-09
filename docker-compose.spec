@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	5.0.2
+Version:	5.1.2
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
@@ -20,6 +20,9 @@ Obsoletes:	fig <= 1.0.1-3
 BuildRequires:  golang >= 1.21
 BuildRequires:  make
 Requires:       docker >= 24.0.1
+
+%patchlist
+docker-compose-fix-checksums.patch
 
 %description
 Compose is a tool for defining and running multi-container Docker
