@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	5.1.2
+Version:	5.4.0
 Release:	1
 Summary:	Multi-container orchestration for Docker
 
@@ -17,12 +17,9 @@ Provides:	fig = %{version}-%{release}
 # Last fig EVR was 1.0.1-2
 Obsoletes:	fig <= 1.0.1-3
 
-BuildRequires:  golang >= 1.21
-BuildRequires:  make
-Requires:       docker >= 24.0.1
-
-%patchlist
-docker-compose-fix-checksums.patch
+BuildRequires:	golang >= 1.26
+BuildRequires:	make
+Requires:	docker >= 24.0.1
 
 %description
 Compose is a tool for defining and running multi-container Docker
@@ -51,7 +48,8 @@ export GO111MODULE=on
 go build \
    -buildmode=pie \
    -trimpath \
-   -ldflags="-linkmode=external -s -w -X github.com/docker/compose/v2/internal.Version=%{version}" \
+   -mod=vendor \
+   -ldflags="-linkmode=external -s -w -X github.com/docker/compose/v5/internal.Version=%{version}" \
    -o bin/build/docker-compose ./cmd/
 
 %install
