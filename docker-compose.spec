@@ -1,9 +1,10 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	5.4.0
+Version:	5.5.0
 Release:	1
 Summary:	Multi-container orchestration for Docker
+Group:		Servers
 
 License:	ASL 2.0
 URL:		https://github.com/docker/compose
