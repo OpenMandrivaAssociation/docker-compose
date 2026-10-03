@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	5.5.1
+Version:	5.6.0
 Release:	1
 Summary:	Multi-container orchestration for Docker
 Group:		Servers
