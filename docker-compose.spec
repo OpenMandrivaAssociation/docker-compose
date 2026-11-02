@@ -1,7 +1,7 @@
 %undefine _debugsource_packages
 
 Name:		docker-compose
-Version:	5.6.1
+Version:	5.7.0
 Release:	1
 Summary:	Multi-container orchestration for Docker
 Group:		Servers
@@ -18,7 +18,7 @@ Provides:	fig = %{version}-%{release}
 # Last fig EVR was 1.0.1-2
 Obsoletes:	fig <= 1.0.1-3
 
-BuildRequires:	golang >= 1.26
+BuildRequires:	golang >= 1.26.10
 BuildRequires:	make
 Requires:	docker >= 24.0.1
 
